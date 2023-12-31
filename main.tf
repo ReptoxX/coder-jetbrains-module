@@ -33,11 +33,11 @@ variable "default" {
 variable "jetbrains_ides" {
   type        = list(string)
   description = "The list of IDE product codes."
-  default     = ["PS", "GO"]
+  default     = ["PS-2023.3.2", "GO-2023.3.2"]
   validation {
     condition = (
       alltrue([
-        for code in var.jetbrains_ides : contains(["PS", "GO"], code)
+        for code in var.jetbrains_ides : contains(["PS-2023.2.3", "PS-2023.3.2", "GO-2023.2.3", "GO-2023.3.2"], code)
       ])
     )
     error_message = "The jetbrains_ides must be a list of valid product codes. Valid product codes are IU, PS, WS, PY, CL, GO, RM."
@@ -56,22 +56,22 @@ variable "jetbrains_ides" {
 
 locals {
   jetbrains_ides = {
-    "GO2324" = {
+    "GO-2023.2.4" = {
       icon  = "/icon/goland.svg",
       name  = "GoLand 2023.2.4",
       value = jsonencode(["GO", "232.10203.20", "https://download.jetbrains.com/go/goland-2023.2.4.tar.gz"])
     },
-    "GO2332" = {
+    "GO-2023.3.2" = {
       icon  = "/icon/goland.svg",
       name  = "GoLand 2023.3.2",
       value = jsonencode(["GO", "233.13135.104", "https://download.jetbrains.com/go/goland-2023.3.2.tar.gz"])
     },
-    "PS2323" = {
+    "PS-2023.2.3" = {
       icon  = "/icon/phpstorm.svg",
       name  = "PhpStorm 2023.2.3",
       value = jsonencode(["PS", "232.10072.32", "https://download.jetbrains.com/webide/PhpStorm-2023.2.3.tar.gz"])
     },
-    "PS2332" = {
+    "PS-2023.3.2" = {
       icon  = "/icon/phpstorm.svg",
       name  = "PhpStorm 2023.3.2",
       value = jsonencode(["PS", "233.13135.108", "https://download.jetbrains.com/webide/PhpStorm-2023.3.2.tar.gz"])
